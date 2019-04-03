@@ -1,6 +1,6 @@
 data/
 preprocessed/
-features/
+features/*.rep
 2019/
 script/src
 proNet-core/
