@@ -72,7 +72,7 @@ def ReciprocalRank(item, rec_list):
     for i in range(len(rec_list)):
         if item == rec_list[i]:
             return 1/(i+1)
-
+    return 0.0
 def validate(rec, ground_truth):
     val = 0.0
     cnt = 0
