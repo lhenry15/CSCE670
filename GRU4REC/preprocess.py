@@ -50,12 +50,12 @@ def split_val(data, group):
 if __name__ == '__main__':
     train_data = read_csv('train.csv',
                           ['user_id', 'session_id', 'timestamp', 'action_type', 'reference', 'impressions'])
-    # test_data = read_csv('test.csv', ['user_id', 'session_id', 'timestamp', 'step', 'action_type', 'reference'])
+    test_data = read_csv('test.csv', ['user_id', 'session_id', 'timestamp', 'step', 'action_type', 'reference'])
     train_full_data, session_group = filter_session(train_data)
-    # train_tr, validation = split_val(train_full_data, session_group)
-    # train_full_data.to_csv(path_join(OUTPUT_DIR, 'train_full.csv'), sep=',', index=False)
-    # train_tr.to_csv(path_join(OUTPUT_DIR, 'train_tr.csv'), sep=',', index=False)
-    # validation.to_csv(path_join(OUTPUT_DIR, 'validation.csv'), sep=',', index=False)
+    train_tr, validation = split_val(train_full_data, session_group)
+    train_full_data.to_csv(path_join(OUTPUT_DIR, 'train_full.csv'), sep=',', index=False)
+    train_tr.to_csv(path_join(OUTPUT_DIR, 'train_tr.csv'), sep=',', index=False)
+    validation.to_csv(path_join(OUTPUT_DIR, 'validation.csv'), sep=',', index=False)
     small_train, small_valid = generate_small_dataset(train_full_data, session_group)
     small_train.to_csv(path_join(OUTPUT_DIR, 'small_train_tr.csv'), sep=',', index=False)
     small_valid.to_csv(path_join(OUTPUT_DIR, 'small_validation.csv'), sep=',', index=False)

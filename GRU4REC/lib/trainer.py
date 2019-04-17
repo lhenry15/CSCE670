@@ -68,29 +68,10 @@ class Trainer(object):
             hidden = reset_hidden(hidden, mask).detach()
             logit, hidden = self.model(x, hidden)
             # output sampling
-            # unique_label = np.unique(y_cpu.numpy())
-            #
-            # n_neg_sample = logit.shape[0] - unique_label.size
-            # neg_sample = np.random.choice(logit.shape[1], 2 * n_neg_sample, replace=False)
-            # neg_sample = np.delete(neg_sample, np.isin(neg_sample, unique_label).nonzero())[:n_neg_sample]
-            # sample_index = np.concatenate((neg_sample, unique_label))
-            # logit_sampled = logit[:, sample_index]
             logit_sample, label_index = lib.sample_logit(logit, y_cpu)
             loss = self.loss_func(logit_sample, label_index)
             losses.append(loss.item())
             loss.backward()
-            # low = high_index[i - 1] if i != 0 else 0
-            # high = high_index[i]
-            # user_id = user_ids[low:high]
-            # assert (len(set(user_id)) == 1)
-            # logit, hidden = self.model(x)
-            # output sampling
-            # sample_index = self._get_impressions(impressions[low:high])
-            # logit_sampled = logit[:, sample_index]
-            # logit_sampled = logit
-            # loss = self.loss_func(logit_sampled)
-            # losses.append(loss.item())
-            # loss.backward()
             self.optim.step()
 
         mean_losses = np.mean(losses)
