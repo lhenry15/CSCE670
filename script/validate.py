@@ -3,6 +3,8 @@ import numpy as np
 from scipy.spatial.distance import cosine
 from tqdm import tqdm
 import sys
+from rerank import rerank
+
 def read_train_data():
     train = defaultdict(lambda: defaultdict(list))
     ground_truth = defaultdict(lambda: defaultdict())
@@ -25,6 +27,7 @@ def read_train_data():
                     item = line[5]
                     ground_truth[user][session] = (timestamp, item)
             if count > 500:
+            #if count > 5:
                 break
     return train, ground_truth
 
@@ -63,9 +66,10 @@ def make_similarity_recommendation(data, feature):
                     item_vec = feature[item]
                 else:
                     item_vec = avg_emb(data[user][sess][timestamp], feature)
+                    feature[item] = item_vec
                 candidate = find_top_k_items(item_vec, feature, 10) 
                 rec_list.extend(candidate)
-            rec_dict[user][sess] = rec_list
+            rec_dict[user][sess] = rerank(user, feature, rec_list, ground_truth[user][session])
     return rec_dict
 
 def ReciprocalRank(item, rec_list):
@@ -73,6 +77,7 @@ def ReciprocalRank(item, rec_list):
         if item == rec_list[i]:
             return 1/(i+1)
     return 0.0
+
 def validate(rec, ground_truth):
     val = 0.0
     cnt = 0

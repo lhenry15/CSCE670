@@ -13,5 +13,12 @@ I make recommendations for each session  by calculating the similarity
 in the learned embedding space for the items in the session, and choose the top-k
 most similar items for the recommendation list.
 
+# Performance of Embedding Algorithm
+BPR: 0.4859
+MF: 0.4752
+APP: 0.4657
+HPE: 0.4498
+Deepwalk: 0.4151
+
 
 P.S: We need to find a way to share the features, they are too big to share on github.
