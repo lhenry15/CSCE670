@@ -35,3 +35,8 @@ most similar items for the recommendation list.
 
 
 P.S: We need to find a way to share the features, they are too big to share on github.
+
+#### Qing
+I used autoencoder method to extract 10 dimensional embedding features from item metadata, the loss is 0.03 which is acceptable.
+
+The feature is stored in .csv file.
