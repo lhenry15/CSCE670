@@ -50,4 +50,4 @@ with tf.Session() as sess:
 
     embedding = code.eval(feed_dict={X: df.drop(['item_id'], axis=1)})
     df_code = pd.DataFrame(embedding,index=df['item_id'],columns=['f1','f2','f3','f4','f5','f6','f7','f8','f9','f10'])
-    df_code.to_csv('item_embedding_best.csv')
+    df_code.to_csv('10d_item_feature.csv')
