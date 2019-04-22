@@ -1,24 +1,25 @@
 # CSCE670
-####Lin 2019-04-17:  
+#### Lin 2019-04-17:  
 
-######Include GRU4REC in repository.   
+###### Include GRU4REC in repository.   
 I used GRU4REC framework to predict next item using current item in hope of
 finding some time relation between items.   
 I modified the way GRU4REC does negative sampling. Negative sample are selected
 randomly from training set. Unlike GRU4REC sampled them from the same batch. 
 
-######How to run:
-    1. Use preprocess.py to separate train.csv to train_tr.csv and validation.csv
-    2. run main.py with desired hyper-param.
+###### How to run:
+    1. pip install -r requirements.txt
+    2. Use preprocess.py to separate train.csv to train_tr.csv and validation.csv
+    3. run main.py with desired hyper-param.
 
-######Further Improvement
+###### Further Improvement
     1. Embed action_type and concate with reference embedding.
     2. Sample more negative sample. As pointed out in the paper, more negative sample can improve performance a lot.
        But using all samples will need tremendous amount of memory.
     3. Increase hidden unit number.
     4. Try TOP1 max or BPR max loss.
 
-####Henry:
+#### Henry:
 
 script/validate.py: use for offline checking the performance by sampling some sessions and evaluate on training data.
 
@@ -41,3 +42,8 @@ Deepwalk: 0.4151
 
 
 P.S: We need to find a way to share the features, they are too big to share on github.
+
+#### Qing
+I used autoencoder method to extract 10 dimensional embedding features from item metadata, the loss is 0.03 which is acceptable.
+
+The feature is stored in .csv file.
