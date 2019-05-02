@@ -25,20 +25,23 @@ script/validate.py: use for offline checking the performance by sampling some se
 
 script/other_scrtipts: for feature extraction
 
+script/rerank.py: reranking via xgboost
+
 Note: For now, I only extract the user-item relations and construct the user-item graph(mixed.edgelist) by some heuristics, and apply some GNN algorithm for learning the item representations.
 
-For recommendation scenario, I apply the concept of item-based CF. 
+For recommendation scenario, I apply the concept of item-based KNN. 
 Based on the learned item representation from GNN algorithm, 
 I make recommendations for each session  by calculating the similarity
 in the learned embedding space for the items in the session, and choose the top-k
 most similar items for the recommendation list.
 
 # Performance of Embedding Algorithm
-BPR: 0.4859
+HopRec: 0.4859
 MF: 0.4752
 APP: 0.4657
 HPE: 0.4498
 Deepwalk: 0.4151
+Item-Features only: 0.4398
 
 
 P.S: We need to find a way to share the features, they are too big to share on github.
