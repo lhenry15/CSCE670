@@ -46,7 +46,13 @@ Item-Features only: 0.4398
 
 P.S: We need to find a way to share the features, they are too big to share on github.
 
-#### Qing
+#### Chao:
+
+Metadata Preprocessing.ipynb: extracting the item features from metadata, and convert the features into a metrix for all items. It also extracts the locations and user interactions as the features for items. 
+
+2layer_30d_AutoEncoder.py: a two-layer autoencoder that can reduce the dimentionality of the item feature matrix into a 30-dimensional matrix.
+
+#### Qing:
 I used autoencoder method to extract 10 dimensional embedding features from item metadata, the loss is 0.03 which is acceptable.
 
 The feature is stored in .csv file.
